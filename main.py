@@ -3,6 +3,7 @@ import os
 import requests
 import json
 from replit import db
+from keep_alive import keep_alive
 
 client = discord.Client()
 
@@ -28,7 +29,7 @@ def delete_fuck_words(idx):
 
 fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty"]
 
-key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords", "$new", "$del"]
+key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
 
 
 @client.event
@@ -65,25 +66,10 @@ async def on_message(message):
       await message.channel.send(word + "\n")
     return
 
-
-  if msg.startswith("$new"):
-    fucksword = msg.split("new ", 1)[1]
-    update_fuck_words(fucksword)
-    await message.channel.send("Added new word")
-    return 
-
-  if msg.startswith("$del"):
-    fucksword = []
-    if "fucks" in db.keys():
-      idx = int(msg.split("$del",1)[1])
-      delete_fuck_words(idx)
-      fucksword = db["fucks"]
-    await message.channel.send(fucksword)
-    return 
-
   if any(word.lower() in msg for word in options):
     censor_message = "That's not nice!"
     await message.channel.send(censor_message)
     return 
-    
+#Keeps the server alive on the server
+keep_alive()    
 client.run(os.getenv('TOKEN'))
