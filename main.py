@@ -1,15 +1,16 @@
 import discord
 import os
-import time
+#import time
 
 from keep_alive import keep_alive
 from helper_functions import get_quote
+'''
 from helper_functions import get_playlist_name
 from helper_functions import update_playlist_db
 from helper_functions import update_fuck_words
 from helper_functions import delete_fuck_words
 from helper_functions import botify_helper
-
+'''
 from replit import db
 
 client = discord.Client()
@@ -35,6 +36,7 @@ async def on_message(message):
     #ignore bots
     return
 
+  '''
   playlists = playlist_list
   
   if "playlists" in db.keys():
@@ -51,6 +53,7 @@ async def on_message(message):
     time.sleep(10)
     await message.channel.send(botify_helper(message.content, "queue"))
     return
+  '''
 
   options = fuck_words
   if "fucks" in db.keys():
