@@ -14,7 +14,8 @@ from replit import db
 
 client = discord.Client()
 
-fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty", "cunt"]
+fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty", "cunt", "bitch", "bastard"]
+
 
 key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
 
