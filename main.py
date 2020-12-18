@@ -32,7 +32,7 @@ async def on_message(message):
   if message.author == client.user:
     return
 
-  if message.author.bot.lower() == "true":
+  if message.author.bot == True:
     #ignore bots
     return
 
