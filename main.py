@@ -1,89 +1,90 @@
-import discord
 import os
 #import time
-
+from discord.ext import commands
 from keep_alive import keep_alive
 from helper_functions import get_quote
-'''
-from helper_functions import get_playlist_name
-from helper_functions import update_playlist_db
-from helper_functions import update_fuck_words
-from helper_functions import delete_fuck_words
-from helper_functions import botify_helper
-'''
+from helper_functions import get_random_image
 from replit import db
 
-client = discord.Client()
+prefix = "$"
+client = commands.Bot(prefix)
+
 
 fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
+options = fuck_words
 
 key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
 
-playlist_list = []
+players = {}
 
-@client.event
-async def on_ready():
+@client.command()
+async def hello(ctx):
+    await ctx.message.channel.send('Hello {0}!'.format(ctx.message.author.name))
 
-  print('We have logged in as {0.user}'.format(client))
+@client.command()
+async def join(ctx):
+    channel = ctx.author.voice.channel
+    await channel.connect()
+
+@client.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
+
+@client.command()
+async def inspire(ctx):
+    quote = get_quote()
+    await ctx.message.channel.send(quote)
+    return 
+
+@client.command()
+async def listbadwords(ctx):
+    for word in options:
+      await ctx.message.channel.send(word + "\n")
+    return
+
+@client.command()
+async def robottone(ctx):
+    for word in key_words:
+      await ctx.message.channel.send(word + "\n")
+    return
+
+@client.command()
+async def message(ctx):
+  await ctx.message.channel.send(ctx.message)
+
+
+@client.command()
+async def image(ctx):
+  url = get_random_image()
+  await ctx.message.channel.send(url)
+
+#play youtube link
+@client.command(pass_context=True)
+async def play(ctx, url):
+  return
 
 @client.event
 async def on_message(message):
-  if message.author == client.user:
-    return
-
   if message.author.bot == True:
     #ignore bots
     return
-
-  '''
-  playlists = playlist_list
-  
-  if "playlists" in db.keys():
-    playlists = playlists + db["playlists"]
-
-  channel_name = message.channel.name
-
-  if channel_name == "monthly-playlist-drop":
-    if get_playlist_name() not in playlists:
-      update_playlist_db(get_playlist_name())
-      await message.channel.send(botify_helper(message.content, "create"))
-      time.sleep(10)
-    await message.channel.send(botify_helper(message.content, "playlist"))
-    time.sleep(10)
-    await message.channel.send(botify_helper(message.content, "queue"))
-    return
-  '''
-
-  options = fuck_words
-  if "fucks" in db.keys():
-    options = options + db["fucks"]
-
   msg = message.content.lower()
-
-  if msg.startswith('$hello'):
-    await message.channel.send('Hello {0}!'.format(message.author))
-    return 
-    
-  if msg.startswith('$inspire'):
-    quote = get_quote()
-    await message.channel.send(quote)
-    return 
-    
-  if msg.startswith("$listfuckwords"):
-    for word in options:
-      await message.channel.send(word + "\n")
-    return
-
-  if msg.startswith("$robottone"):
-    for word in key_words:
-      await message.channel.send(word + "\n")
-    return
-
   if any(word.lower() in msg for word in options):
     censor_message = "That's not nice!"
     await message.channel.send(censor_message)
     return 
+  await client.process_commands(message)
+
+@client.event
+async def on_ready():
+
+  options = fuck_words
+  if "fucks" in db.keys():
+    options = options + db["fucks"]
+  print('We have logged in as {0.user}'.format(client))
+
+
 #Keeps the server alive on the server
 keep_alive()    
 client.run(os.getenv('TOKEN'))

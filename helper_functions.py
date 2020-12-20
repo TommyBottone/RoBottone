@@ -1,6 +1,7 @@
 import requests
 import json
 import datetime
+import random 
 
 from replit import db
 
@@ -9,6 +10,10 @@ def get_quote():
     json_data = json.loads(response.text)
     quote = json_data[0]['q'] + " -" + json_data[0]['a']
     return (quote)
+
+def get_random_image():
+  url = "https://picsum.photos/200/300?random=" + str(random.randint(0,99))
+  return(url)
 
 
 def get_playlist_name():
