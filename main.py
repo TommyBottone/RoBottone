@@ -1,6 +1,7 @@
 import os
 #import time
 from discord.ext import commands
+
 from keep_alive import keep_alive
 from helper_functions import get_quote
 from helper_functions import get_random_image
@@ -62,7 +63,8 @@ async def image(ctx):
 #play youtube link
 @client.command(pass_context=True)
 async def play(ctx, url):
-  return
+  async with ctx.typing():
+    return  
 
 @client.event
 async def on_message(message):
@@ -74,6 +76,10 @@ async def on_message(message):
     censor_message = "That's not nice!"
     await message.channel.send(censor_message)
     return 
+  elif msg.find("pussy") != -1:
+    await message.channel.send("Pussy on the chainwax!")
+    await message.channel.send("https://i.makeagif.com/media/12-07-2017/gdW2fv.gif")
+    return
   await client.process_commands(message)
 
 @client.event
