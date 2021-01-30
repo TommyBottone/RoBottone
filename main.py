@@ -6,6 +6,7 @@ from keep_alive import keep_alive
 from helper_functions import get_quote
 from helper_functions import get_random_image
 from replit import db
+import random 
 
 prefix = "$"
 client = commands.Bot(prefix)
@@ -68,18 +69,33 @@ async def play(ctx, url):
 
 @client.event
 async def on_message(message):
+  val = random.randint(0,99)
   if message.author.bot == True:
     #ignore bots
     return
   msg = message.content.lower()
+
   if any(word.lower() in msg for word in options):
-    censor_message = "That's not nice!"
-    await message.channel.send(censor_message)
-    return 
+    gifStr = "That's not nice!"
   elif msg.find("pussy") != -1:
-    await message.channel.send("Pussy on the chainwax!")
-    await message.channel.send("https://i.makeagif.com/media/12-07-2017/gdW2fv.gif")
+    gifStr= "https://imgur.com/r/gifs/al9cdQK"
+    if val % 2 == 0:
+      await message.channel.send("Pussy on the chainwax!")
+      gifStr="https://i.makeagif.com/media/12-07-2017/gdW2fv.gif"
     return
+  elif msg.find("awesome") != -1:
+    gifStr = "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327"
+    if val % 2 == 0:
+      gifStr = "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"
+  elif msg.find("ham") != -1:
+    gifStr = "https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"
+  elif msg.find("tits") != -1:
+    if val % 2:
+      gifStr = "(o)Y(o)"
+    else: 
+      gifStr = "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236"
+
+  await message.channel.send(gifStr)
   await client.process_commands(message)
 
 @client.event
