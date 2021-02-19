@@ -7,31 +7,37 @@ from helper_functions import get_quote
 from helper_functions import get_random_image
 from replit import db
 import random 
+import tweepy
+import twitter
 
 prefix = "$"
 client = commands.Bot(prefix)
-
 
 fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
 options = fuck_words
 
+blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
+
 key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
 
-players = {}
+api = twitter.authenticate_twitter()
 
 @client.command()
 async def hello(ctx):
     await ctx.message.channel.send('Hello {0}!'.format(ctx.message.author.name))
+    return
 
 @client.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
+    return
 
 @client.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
+    return
 
 @client.command()
 async def inspire(ctx):
@@ -55,7 +61,6 @@ async def robottone(ctx):
 async def message(ctx):
   await ctx.message.channel.send(ctx.message)
 
-
 @client.command()
 async def image(ctx):
   url = get_random_image()
@@ -69,33 +74,71 @@ async def play(ctx, url):
 
 @client.event
 async def on_message(message):
-  val = random.randint(0,99)
   if message.author.bot == True:
     #ignore bots
     return
+    
+  val = random.randint(0,99)
+
   msg = message.content.lower()
 
+  #Check twitter for hashtag
+  if msg.startswith("#"):
+    tag = msg.split(" ")    
+    query = tag[0]
+    await message.channel.send(query)
+    
+    if query == "#trending":
+      woeid = 2347572 #US
+      trends = api.trends_place(1)
+
+      i = 0
+
+      for value in trends: 
+          for trend in value['trends']: 
+              if i == 10:
+                return
+              await message.channel.send(trend['name']) 
+              i+=1
+              
+    else:
+      if any(word.lower() in msg for word in blocked_twitter):
+        await message.channel.send("Sorry not going to look that up")
+        return
+
+      for i, status in enumerate(tweepy.Cursor(api.search, q=query).items(3)):
+        await message.channel.send(status.text)
+        await message.channel.send("==========================================================================================================================")
+    return
+
+  gifStr = ""
+  #Check for swears
   if any(word.lower() in msg for word in options):
     gifStr = "That's not nice!"
+  #Check for pussy
   elif msg.find("pussy") != -1:
     gifStr= "https://imgur.com/r/gifs/al9cdQK"
     if val % 2 == 0:
       await message.channel.send("Pussy on the chainwax!")
       gifStr="https://i.makeagif.com/media/12-07-2017/gdW2fv.gif"
-    return
+  #Check for awesome
   elif msg.find("awesome") != -1:
     gifStr = "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327"
     if val % 2 == 0:
       gifStr = "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"
+  #Check for hap
   elif msg.find("ham") != -1:
     gifStr = "https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"
+  #Check for tits
   elif msg.find("tits") != -1:
     if val % 2:
       gifStr = "(o)Y(o)"
     else: 
       gifStr = "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236"
 
-  await message.channel.send(gifStr)
+  if gifStr != "":
+    await message.channel.send(gifStr)
+
   await client.process_commands(message)
 
 @client.event

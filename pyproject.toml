@@ -13,6 +13,8 @@ flask = "^1.1.2"
 youtube-dl = "^2020.12.14"
 PyNaCl = "^1.4.0"
 ffmpeg = "^1.4"
+pandas = "^1.2.2"
+tweepy = "^3.10.0"
 
 [tool.poetry.dev-dependencies]
 
