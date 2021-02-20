@@ -117,24 +117,29 @@ async def on_message(message):
     gifStr = "That's not nice!"
   #Check for pussy
   elif msg.find("pussy") != -1:
-    gifStr= "https://imgur.com/r/gifs/al9cdQK"
-    if val % 2 == 0:
+    mod = 2
+    gifStr= "https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525"
+    if val % mod == 0:
       await message.channel.send("Pussy on the chainwax!")
       gifStr="https://i.makeagif.com/media/12-07-2017/gdW2fv.gif"
   #Check for awesome
   elif msg.find("awesome") != -1:
+    mod = 2
     gifStr = "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327"
-    if val % 2 == 0:
+    if val % mod == 0:
       gifStr = "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"
   #Check for hap
   elif msg.find("ham") != -1:
     gifStr = "https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"
   #Check for tits
   elif msg.find("tits") != -1:
-    if val % 2:
+    mod = 3
+    if val % mod == 0:
       gifStr = "(o)Y(o)"
-    else: 
+    elif val % mod == 1 : 
       gifStr = "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236"
+    else:
+      gifStr = "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif"
 
   if gifStr != "":
     await message.channel.send(gifStr)
@@ -144,9 +149,6 @@ async def on_message(message):
 @client.event
 async def on_ready():
 
-  options = fuck_words
-  if "fucks" in db.keys():
-    options = options + db["fucks"]
   print('We have logged in as {0.user}'.format(client))
 
 
