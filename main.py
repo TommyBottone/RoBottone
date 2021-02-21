@@ -135,7 +135,7 @@ async def on_message(message):
   elif msg.find("tits") != -1:
     mod = 3
     if val % mod == 0:
-      gifStr = "(o)Y(o)"
+      gifStr = "https://media1.giphy.com/media/l0HlK3RyTkaJIfRJu/giphy.gif"
     elif val % mod == 1 : 
       gifStr = "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236"
     else:
