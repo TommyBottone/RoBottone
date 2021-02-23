@@ -6,9 +6,12 @@ from keep_alive import keep_alive
 from helper_functions import get_quote
 from helper_functions import get_random_image
 from helper_functions import format_crypto
+from helper_functions import get_image_from_tits
+from helper_functions import get_image_from_ham
+from helper_functions import get_image_from_awesome
+from helper_functions import get_image_from_pussy
+from helper_functions import get_twitter
 import random 
-import tweepy
-import twitter
 
 prefix = "$"
 client = commands.Bot(prefix)
@@ -17,11 +20,8 @@ fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking
 
 options = fuck_words
 
-blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
-
 key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
 
-api = twitter.authenticate_twitter()
 
 @client.command()
 async def hello(ctx):
@@ -85,38 +85,11 @@ async def on_message(message):
     #ignore bots
     return
     
-  val = random.randint(0,99)
-
   msg = message.content.lower()
 
   #Check twitter for hashtag
   if msg.startswith("#"):
-    tag = msg.split(" ")    
-    query = tag[0]
-    await message.channel.send(query)
-    
-    if query == "#trending":
-      woeid = 2347572 #US
-      trends = api.trends_place(1)
-
-      i = 0
-
-      for value in trends: 
-          for trend in value['trends']: 
-              if i == 10:
-                return
-              await message.channel.send(trend['name']) 
-              i+=1
-              
-    else:
-      if any(word.lower() in msg for word in blocked_twitter):
-        await message.channel.send("Sorry not going to look that up")
-        return
-
-      for i, status in enumerate(tweepy.Cursor(api.search, q=query).items(3)):
-        await message.channel.send(status.text)
-        await message.channel.send("==========================================================================================================================")
-    return
+    await message.channel.send(get_twitter(msg))
 
   gifStr = ""
   #Check for swears
@@ -124,29 +97,16 @@ async def on_message(message):
     gifStr = "That's not nice!"
   #Check for pussy
   elif msg.find("pussy") != -1:
-    mod = 2
-    gifStr= "https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525"
-    if val % mod == 0:
-      await message.channel.send("Pussy on the chainwax!")
-      gifStr="https://i.makeagif.com/media/12-07-2017/gdW2fv.gif"
+    gifStr= get_image_from_pussy()
   #Check for awesome
   elif msg.find("awesome") != -1:
-    mod = 2
-    gifStr = "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327"
-    if val % mod == 0:
-      gifStr = "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"
+    gifStr = get_image_from_awesome()
   #Check for hap
   elif msg.find("ham") != -1:
-    gifStr = "https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"
+    gifStr = get_image_from_ham()
   #Check for tits
   elif msg.find("tits") != -1:
-    mod = 3
-    if val % mod == 0:
-      gifStr = "https://media1.giphy.com/media/l0HlK3RyTkaJIfRJu/giphy.gif"
-    elif val % mod == 1 : 
-      gifStr = "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236"
-    else:
-      gifStr = "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif"
+    gifStr = get_image_from_tits()
 
   if gifStr != "":
     await message.channel.send(gifStr)
