@@ -88,6 +88,17 @@ version = "7.1.2"
 
 [[package]]
 category = "main"
+description = "Wrapper for CryptoCompare.com"
+name = "cryptocompare"
+optional = false
+python-versions = ">=3"
+version = "0.7.5"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
+category = "main"
 description = "A mirror package for discord.py. Please install that instead."
 name = "discord"
 optional = false
@@ -394,7 +405,7 @@ python-versions = "*"
 version = "2020.12.14"
 
 [metadata]
-content-hash = "ace2dd01a31a756b68cc9b214422f37056d2505e25ac5a6fc388890cc267175f"
+content-hash = "fa1dbf9d59d21961dc4f4b24cbd1b316ffecb9b9c7663f997772e98b9e68fb97"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -475,6 +486,9 @@ chardet = [
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
     {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+]
+cryptocompare = [
+    {file = "cryptocompare-0.7.5.tar.gz", hash = "sha256:7583d5519dc74cbd9e4c704e1530c5e8446f4500d4dda481357616e3439410da"},
 ]
 discord = [
     {file = "discord-1.0.1-py3-none-any.whl", hash = "sha256:9d4debb4a37845543bd4b92cb195bc53a302797333e768e70344222857ff1559"},

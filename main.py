@@ -5,7 +5,7 @@ from discord.ext import commands
 from keep_alive import keep_alive
 from helper_functions import get_quote
 from helper_functions import get_random_image
-from replit import db
+from helper_functions import format_crypto
 import random 
 import tweepy
 import twitter
@@ -71,6 +71,13 @@ async def image(ctx):
 async def play(ctx, url):
   async with ctx.typing():
     return  
+
+#get crypto price
+@client.command() 
+async def crypto(ctx, *, message=None):
+  formatRetVal = format_crypto(message)
+  await ctx.message.channel.send(formatRetVal)
+  return
 
 @client.event
 async def on_message(message):
