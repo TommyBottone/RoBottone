@@ -1,14 +1,15 @@
 import requests
 import json
-import datetime
 import random 
 import cryptocompare
 import tweepy
 import twitter
 
-from replit import db
 #blocked twitter words
 blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
+
+crypto_list = ["BTC", "ETH", "ADA", "XRP", "LTC", "DOGE", "MANA", "ATOM"]
+
 api = twitter.authenticate_twitter()
 
 #gifs for tits
@@ -21,7 +22,6 @@ awesomeStr = ["https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8
 pussyStr = ["https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525", "https://i.makeagif.com/media/12-07-2017/gdW2fv.gif"]
 
 
-
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
@@ -32,47 +32,6 @@ def get_random_image():
   url = "https://picsum.photos/200/300?random=" + str(random.randint(0,99))
   return(url)
 
-
-def get_playlist_name():
-    today = datetime.datetime.now()
-    playlist_name = today.strftime("%b") + today.strftime("%Y")
-    return (playlist_name)
-
-
-def update_playlist_db(name):
-    if "playlists" in db.keys():
-        playlist = db["playlists"]
-        playlist.append(name)
-    else:
-        db["playlists"] = [name]
-
-
-def update_fuck_words(message):
-    if "fucks" in db.keys():
-        fucks = db["fucks"]
-        fucks.append(message)
-    else:
-        db["fucks"] = [message]
-
-
-def delete_fuck_words(idx):
-    fucks = db["fuck_words"]
-    if len(fucks) > idx:
-        del fucks[idx]
-        db["fucks"] = fucks
-
-
-def botify_helper(content, arg):
-    botify_str = ""
-    if arg == "playlist":
-        botify_str = "$botify add " + content + " $to " + get_playlist_name(
-        ) + "\n"
-    elif arg == "queue":
-        botify_str = "$botify queue " + content + "\n"
-    elif arg == "create":
-        botify_str = "$botify create " + get_playlist_name() + "\n"
-    return (botify_str)
-
 def compare_crypto(crypto="BTC", currency="USD"):
   price = cryptocompare.get_price(crypto, currency, True)
   return price 
@@ -80,8 +39,20 @@ def compare_crypto(crypto="BTC", currency="USD"):
 def format_crypto(message):
   formatRetVal = ""
   tag = []
-  if message == None or len(message.split(" ")) < 2:
-    formatRetVal = "format: $crypto (COIN_TYPE) (CURRENCY_TYPE) (optional:RAW)"
+
+  if message == None:
+    for c in crypto_list:
+      coin_type = c
+      currency_type = "USD"
+      retVal = compare_crypto(c, "USD")
+      formatRetVal = formatRetVal + coin_type + " to " + currency_type + ": \n" 
+      formatRetVal = formatRetVal + "\tCurrent: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
+      formatRetVal = formatRetVal + "\tHour High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHHOUR"]) + "\n"
+      formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"]) + "\n"
+    return formatRetVal
+
+  elif len(message.split(" ")) == 1:
+      tag = [message.upper().split(" ")[0], "USD"]
   else:
     tag = message.upper().split(" ")
   #print raw 
@@ -92,16 +63,17 @@ def format_crypto(message):
       retVal = compare_crypto(coin_type, currency_type)
       formatRetVal = coin_type + " to " + currency_type + ": \n" 
       formatRetVal = formatRetVal + json.dumps(retVal["DISPLAY"])
-    else: 
-      formatRetVal = "format: $crypto (COIN_TYPE) (CURRENCY_TYPE) (optional:RAW)"
   else:
     coin_type = tag[0]
     currency_type = tag[1]
     retVal = compare_crypto(coin_type, currency_type)
-    formatRetVal = coin_type + " to " + currency_type + ": \n" 
-    formatRetVal = formatRetVal + "\tCurrent: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
-    formatRetVal = formatRetVal + "\tHour High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHHOUR"]) + "\n"
-    formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"])
+    try:
+      formatRetVal = coin_type + " to " + currency_type + ": \n" 
+      formatRetVal = formatRetVal + "\tCurrent: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
+      formatRetVal = formatRetVal + "\tHour High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHHOUR"]) + "\n"
+      formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"])
+    except:
+      formatRetVal = "Could not find " + coin_type
   return formatRetVal
 
 def get_image_from_tits():
@@ -147,3 +119,5 @@ def get_twitter(msg):
         retVal = retVal + status.text + "\n\n\n"
 
   return retVal
+
+  

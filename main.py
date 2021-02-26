@@ -11,17 +11,11 @@ from helper_functions import get_image_from_ham
 from helper_functions import get_image_from_awesome
 from helper_functions import get_image_from_pussy
 from helper_functions import get_twitter
-import random 
+from database import database
+import chain
 
 prefix = "$"
 client = commands.Bot(prefix)
-
-fuck_words = ["fuck", "shit", "crap", "damn", "dammit", "titty", "ass", "fucking", "shitty", "cunt", "bitch", "bastard"]
-
-options = fuck_words
-
-key_words = ["$robottone", "$hello", "$inspire", "$listfuckwords"]
-
 
 @client.command()
 async def hello(ctx):
@@ -46,18 +40,6 @@ async def inspire(ctx):
     return 
 
 @client.command()
-async def listbadwords(ctx):
-    for word in options:
-      await ctx.message.channel.send(word + "\n")
-    return
-
-@client.command()
-async def robottone(ctx):
-    for word in key_words:
-      await ctx.message.channel.send(word + "\n")
-    return
-
-@client.command()
 async def message(ctx):
   await ctx.message.channel.send(ctx.message)
 
@@ -66,17 +48,24 @@ async def image(ctx):
   url = get_random_image()
   await ctx.message.channel.send(url)
 
-#play youtube link
-@client.command(pass_context=True)
-async def play(ctx, url):
-  async with ctx.typing():
-    return  
-
 #get crypto price
 @client.command() 
 async def crypto(ctx, *, message=None):
   formatRetVal = format_crypto(message)
   await ctx.message.channel.send(formatRetVal)
+  return
+
+#check the RoBottone Chain
+@client.command() 
+async def blockchain(ctx):
+  chain_value = chain.get_chain()
+  await ctx.message.channel.send(chain_value)
+  return
+
+@client.command() 
+async def mine(ctx):
+  chain_value = chain.mine_chain(ctx.message.author.name)
+  await ctx.message.channel.send(chain_value)
   return
 
 @client.event
@@ -92,11 +81,7 @@ async def on_message(message):
     await message.channel.send(get_twitter(msg))
 
   gifStr = ""
-  #Check for swears
-  if any(word.lower() in msg for word in options):
-    gifStr = "That's not nice!"
-  #Check for pussy
-  elif msg.find("pussy") != -1:
+  if msg.find("pussy") != -1:
     gifStr= get_image_from_pussy()
   #Check for awesome
   elif msg.find("awesome") != -1:
@@ -122,3 +107,5 @@ async def on_ready():
 #Keeps the server alive on the server
 keep_alive()    
 client.run(os.getenv('TOKEN'))
+chain.start_blockchain()
+database()
