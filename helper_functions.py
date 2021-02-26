@@ -123,3 +123,6 @@ def get_twitter(msg):
   return retVal
 
   
+def send_tweet(msg):
+  api.update_status(msg)
+  return

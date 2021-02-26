@@ -11,6 +11,7 @@ from helper_functions import get_image_from_ham
 from helper_functions import get_image_from_awesome
 from helper_functions import get_image_from_pussy
 from helper_functions import get_twitter
+from helper_functions import send_tweet
 from database import database
 import chain
 
@@ -55,6 +56,14 @@ async def crypto(ctx, *, message=None):
   await ctx.message.channel.send(formatRetVal)
   return
 
+#send tweet
+@client.command() 
+async def tweet(ctx, *, message=None):
+  if ctx.message.author.name == "Gene_Paremesan":
+    send_tweet(message)
+  else:
+    await ctx.message.channel.send("You dont get to tweet: @" + ctx.message.author.name)
+  return
 #check the RoBottone Chain
 @client.command() 
 async def blockchain(ctx):
