@@ -97,7 +97,7 @@ def get_image_from_ham():
   return img
 
 def get_twitter(msg):
-  retVal = ""
+  retVal = []
   tag = msg.split(" ")    
   query = tag[0]
   
@@ -105,18 +105,20 @@ def get_twitter(msg):
     woeid = 23424977 #US
     trends = api.trends_place(woeid)
     i = 0
+    return_list = ""
     for value in trends: 
         for trend in value['trends']: 
             if i == 10:
+              retVal.append(return_list)
               return retVal
-            retVal = retVal + str(i+1) + ": " + trend['name'] + "\n"
+            return_list = return_list + str(i+1) + ": " + trend['name'] + "\n"
             i+=1
   else:
     if any(word.lower() in msg for word in blocked_twitter):
-      retVal = "Sorry not going to look that up"
+      retVal.append("Sorry not going to look that up")
     else:
       for i, status in enumerate(tweepy.Cursor(api.search, q=query).items(3)):
-        retVal = retVal + status.text + "\n\n\n"
+        retVal.append("@"+status.author.name + ": \n\t" + status.text)
 
   return retVal
 

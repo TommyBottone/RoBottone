@@ -78,7 +78,10 @@ async def on_message(message):
 
   #Check twitter for hashtag
   if msg.startswith("#"):
-    await message.channel.send(get_twitter(msg))
+    tweet_list = get_twitter(msg)
+    if tweet_list != None:
+      for tweet in tweet_list:
+        await message.channel.send(tweet)
 
   gifStr = ""
   if msg.find("pussy") != -1:
