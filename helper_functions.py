@@ -11,6 +11,7 @@ blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nu
 crypto_list = ["BTC", "ETH", "ADA", "XRP", "LTC", "DOGE", "MANA", "ATOM"]
 
 api = twitter.authenticate_twitter()
+api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
 
 #gifs for tits
 titsStr = ["https://media1.giphy.com/media/l0HlK3RyTkaJIfRJu/giphy.gif","https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236","https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif"]
@@ -122,7 +123,22 @@ def get_twitter(msg):
 
   return retVal
 
-  
+
+def get_twitter_user(msg):
+  user = msg.split("@")[1]
+  retVal = []
+  retVal.append(user + ": \n\t")
+  tweets = api.user_timeline(screen_name = user, count = 3)
+  for tweet in tweets:
+    retVal.append(tweet._json["text"] + "\n\t")
+
+  return retVal
+
+
 def send_tweet(msg):
   api.update_status(msg)
+  return
+  
+def send_tweet_fancy_d(msg):
+  api_twitter_fancy_d.update_status(msg)
   return

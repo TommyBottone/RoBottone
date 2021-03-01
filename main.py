@@ -12,8 +12,10 @@ from helper_functions import get_image_from_awesome
 from helper_functions import get_image_from_pussy
 from helper_functions import get_twitter
 from helper_functions import send_tweet
+from helper_functions import send_tweet_fancy_d
+from helper_functions import get_twitter_user
 from database import database
-import chain
+#import chain
 
 prefix = "$"
 client = commands.Bot(prefix)
@@ -61,20 +63,22 @@ async def crypto(ctx, *, message=None):
 async def tweet(ctx, *, message=None):
   if ctx.message.author.name == "Gene_Paremesan":
     send_tweet(message)
+  elif ctx.message.author.name == "FancyDynamics":
+    send_tweet_fancy_d(message)
   else:
     await ctx.message.channel.send("You dont get to tweet: @" + ctx.message.author.name)
   return
 #check the RoBottone Chain
 @client.command() 
 async def blockchain(ctx):
-  chain_value = chain.get_chain()
-  await ctx.message.channel.send(chain_value)
+  #chain_value = chain.get_chain()
+  #await ctx.message.channel.send(chain_value)
   return
 
 @client.command() 
 async def mine(ctx):
-  chain_value = chain.mine_chain(ctx.message.author.name)
-  await ctx.message.channel.send(chain_value)
+  #chain_value = chain.mine_chain(ctx.message.author.name)
+  #await ctx.message.channel.send(chain_value)
   return
 
 @client.event
@@ -82,7 +86,7 @@ async def on_message(message):
   if message.author.bot == True:
     #ignore bots
     return
-    
+  
   msg = message.content.lower()
 
   #Check twitter for hashtag
@@ -90,6 +94,12 @@ async def on_message(message):
     tweet_list = get_twitter(msg)
     if tweet_list != None:
       for tweet in tweet_list:
+        await message.channel.send(tweet)
+
+  elif msg.startswith("@"):
+    tweets = get_twitter_user(msg)
+    if tweets != None:
+      for tweet in tweets:
         await message.channel.send(tweet)
 
   gifStr = ""
@@ -119,5 +129,5 @@ async def on_ready():
 #Keeps the server alive on the server
 keep_alive()    
 client.run(os.getenv('TOKEN'))
-chain.start_blockchain()
+#chain.start_blockchain()
 database()
