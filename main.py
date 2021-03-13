@@ -3,17 +3,8 @@ import os
 from discord.ext import commands
 
 from keep_alive import keep_alive
-from helper_functions import get_quote
-from helper_functions import get_random_image
-from helper_functions import format_crypto
-from helper_functions import get_image_from_tits
-from helper_functions import get_image_from_ham
-from helper_functions import get_image_from_awesome
-from helper_functions import get_image_from_pussy
-from helper_functions import get_twitter
-from helper_functions import send_tweet
-from helper_functions import send_tweet_fancy_d
-from helper_functions import get_twitter_user
+import helper_functions
+
 from database import database
 #import chain
 
@@ -38,7 +29,7 @@ async def leave(ctx):
 
 @client.command()
 async def inspire(ctx):
-    quote = get_quote()
+    quote = helper_functions.get_quote()
     await ctx.message.channel.send(quote)
     return 
 
@@ -48,13 +39,13 @@ async def message(ctx):
 
 @client.command()
 async def image(ctx):
-  url = get_random_image()
+  url = helper_functions.get_random_image()
   await ctx.message.channel.send(url)
 
 #get crypto price
 @client.command() 
 async def crypto(ctx, *, message=None):
-  formatRetVal = format_crypto(message)
+  formatRetVal = helper_functions.format_crypto(message)
   await ctx.message.channel.send(formatRetVal)
   return
 
@@ -62,9 +53,9 @@ async def crypto(ctx, *, message=None):
 @client.command() 
 async def tweet(ctx, *, message=None):
   if ctx.message.author.name == "Gene_Paremesan":
-    send_tweet(message)
+    helper_functions.send_tweet(message)
   elif ctx.message.author.name == "FancyDynamics":
-    send_tweet_fancy_d(message)
+    helper_functions.send_tweet_fancy_d(message)
   else:
     await ctx.message.channel.send("You dont get to tweet: @" + ctx.message.author.name)
   return
@@ -91,30 +82,40 @@ async def on_message(message):
 
   #Check twitter for hashtag
   if msg.startswith("#"):
-    tweet_list = get_twitter(msg)
+    tweet_list = helper_functions.get_twitter(msg)
     if tweet_list != None:
       for tweet in tweet_list:
         await message.channel.send(tweet)
+    return
 
   elif msg.startswith("@"):
-    tweets = get_twitter_user(msg)
+    tweets = helper_functions.get_twitter_user(msg)
     if tweets != None:
       for tweet in tweets:
         await message.channel.send(tweet)
+    return 
 
   gifStr = ""
   if msg.find("pussy") != -1:
-    gifStr= get_image_from_pussy()
+    gifStr= helper_functions.get_image_from_pussy()
   #Check for awesome
   elif msg.find("awesome") != -1:
-    gifStr = get_image_from_awesome()
+    gifStr = helper_functions.get_image_from_awesome()
   #Check for hap
   elif msg.find("ham") != -1:
-    gifStr = get_image_from_ham()
+    gifStr = helper_functions.get_image_from_ham()
   #Check for tits
   elif msg.find("tits") != -1:
-    gifStr = get_image_from_tits()
-
+    gifStr = helper_functions.get_image_from_tits()
+  #check for nice
+  elif msg.find("nice") != -1:
+    gifStr = helper_functions.get_image_from_nice()
+  #check for omg
+  elif msg.find("omg") != -1:
+    gifStr = helper_functions.get_image_from_omg()
+  #check for thanks
+  elif msg.find("ty") != -1 or msg.find("thank") != -1 or msg.find("thx") != -1:
+    gifStr = helper_functions.get_image_from_thanks()
   if gifStr != "":
     await message.channel.send(gifStr)
 
