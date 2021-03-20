@@ -8,7 +8,7 @@ import twitter
 #blocked twitter words
 blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
-crypto_list = ["BTC", "ETH", "ADA", "XRP", "LTC", "DOGE", "MANA", "ATOM"]
+crypto_list = ["BTC", "ETH", "ADA", "XRP", "LTC", "DOGE", "MANA", "ATOM", "SUSHI", "ADA", "BAT"]
 
 api = twitter.authenticate_twitter()
 api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
@@ -79,6 +79,7 @@ def format_crypto(message):
       formatRetVal = formatRetVal + "\tCurrent: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
       formatRetVal = formatRetVal + "\tHour High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHHOUR"]) + "\n"
       formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"]) + "\n"
+      formatRetVal = formatRetVal + "\tDay High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHDAY"]) + "\n"
     return formatRetVal
 
   elif len(message.split(" ")) == 1:
@@ -101,7 +102,9 @@ def format_crypto(message):
       formatRetVal = coin_type + " to " + currency_type + ": \n" 
       formatRetVal = formatRetVal + "\tCurrent: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
       formatRetVal = formatRetVal + "\tHour High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHHOUR"]) + "\n"
-      formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"])
+      formatRetVal = formatRetVal + "\tHour Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWHOUR"]) + "\n"
+      formatRetVal = formatRetVal + "\tDay High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHDAY"]) + "\n"
+      formatRetVal = formatRetVal + "\tDay Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWDAY"]) + "\n"
     except:
       formatRetVal = "Could not find " + coin_type
   return formatRetVal
