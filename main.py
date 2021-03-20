@@ -116,9 +116,9 @@ async def on_message(message):
   #check for thanks
   elif msg.find("thank") != -1:
     gifStr = helper_functions.get_image_from_thanks()
-  #check for crash
+  #check for crashcrash
   elif msg.find("crash") != -1:
-    gifSstr = helper_functions.get_image_from_crash()
+    gifStr = helper_functions.get_image_from_crash()
   if gifStr != "":
     await message.channel.send(gifStr)
 
