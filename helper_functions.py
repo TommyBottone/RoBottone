@@ -46,10 +46,13 @@ ham_str = ["https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"]
 #gifs for awesome
 awesome_str = ["https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327", "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"]
 #gifs for pussy
-pussy_str = ["https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525", "https://i.makeagif.com/media/12-07-2017/gdW2fv.gif", "https://tenor.com/view/cat-kitty-kitten-money-slap-gif-4987644", "https://tenor.com/view/cute-kitty-best-kitty-alex-cute-pp-kitty-omg-yay-cute-kitty-munchkin-kitten-gif-15917800", "https://tenor.com/view/good-morning-funny-animals-insomnia-cat-tired-crazy-cute-gif-11458685", "https://tenor.com/view/cat-sneaking-mountain-gif-5074481", "https://tenor.com/view/keyboard-cat-gif-3955335","https://tenor.com/view/cute-cat-kitten-kitty-pussy-cat-gif-17582631",
+pussy_str = ["https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525", "https://i.makeagif.com/media/12-07-2017/gdW2fv.gif", "https://tenor.com/view/cat-kitty-kitten-money-slap-gif-4987644", "https://tenor.com/view/cute-kitty-best-kitty-alex-cute-pp-kitty-omg-yay-cute-kitty-munchkin-kitten-gif-15917800", "https://tenor.com/view/good-morning-funny-animals-insomnia-cat-tired-crazy-cute-gif-11458685", 
+"https://tenor.com/view/cat-sneaking-mountain-gif-5074481", "https://tenor.com/view/keyboard-cat-gif-3955335","https://tenor.com/view/cute-cat-kitten-kitty-pussy-cat-gif-17582631",
 "https://i.pinimg.com/originals/5d/50/96/5d50964c25f8ce13e5531c60892c03dd.gif"]
 #gifs for nice
-nice_str = ["https://c.tenor.com/O73IijKloyUAAAAM/nice-south.gif", "https://tenor.com/view/nice-very-nice-gif-4295060", "https://tenor.com/view/nice-nooice-bling-key-and-peele-gif-4294979", "httcom/view/sam-neill-double-glasses-take-off-shades-off-jurassic-park-gif-16455021", "https://tenor.com/view/taking-glasses-off-gif-9227031"] 
+nice_str = ["https://c.tenor.com/O73IijKloyUAAAAM/nice-south.gif", 
+"https://tenor.com/view/nice-very-nice-gif-4295060", "https://tenor.com/view/nice-nooice-bling-key-and-peele-gif-4294979", "https://tenor.com/view/sam-neill-double-glasses-take-off-shades-off-jurassic-park-gif-16455021", 
+"https://tenor.com/view/taking-glasses-off-gif-9227031"] 
 #gifs for Thankyou
 ty_str = ["https://tenor.com/view/leonardo-dicaprio-thank-you-cheers-smile-gif-17045602", "https://tenor.com/view/thanks-thank-you-dwight-gif-3898407", "https://tenor.com/view/the-office-bow-michael-scott-steve-carell-office-gif-12985913", "https://tenor.com/view/thanks-south-park-drive-gif-6088544" ]
 #gifs for crash
