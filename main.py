@@ -122,6 +122,9 @@ async def on_message(message):
   #check for work
   elif msg.find("work") != -1:
     gifStr = helper_functions.get_image_from_work()
+  #check for pop
+  elif msg.find("pop") != -1:
+    gifStr = helper_functions.get_image_from_pop()
   if gifStr != "":
     await message.channel.send(gifStr)
 

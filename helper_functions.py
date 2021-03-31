@@ -67,6 +67,12 @@ work_str = [
   "https://giphy.com/gifs/work-share-hard-na2v3jKhxosCI",
   "https://www.primogif.com/p/y3sd2XAxCOSJi"
 ]
+#gifs for pop
+pop_str = ["https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gifv",
+"https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
+"https://i.imgur.com/Z56FHaK.gif",
+"https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gifv"]
+
 
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -184,6 +190,19 @@ def get_image_from_work():
 
   if len(work_str_count_array) >= len(work_str)-1:
     work_str_count_array.clear()
+  return img
+
+pop_str_count_array = []
+def get_image_from_pop():
+  val = random.randint(0,len(pop_str)-1)
+  if val in pop_str_count_array:
+    img = get_image_from_pop()
+  else:
+    img = pop_str[val]
+    pop_str_count_array.append(val)
+
+  if len(pop_str_count_array) >= len(pop_str)-1:
+    pop_str_count_array.clear()
   return img
 
 def get_twitter(msg):
