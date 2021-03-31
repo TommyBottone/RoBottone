@@ -65,13 +65,13 @@ work_str = [
   "https://giphy.com/gifs/funny-movie-work-QK21sAsxnJATS",
   "https://giphy.com/gifs/foxhomeent-3owyoUHuSSqDMEzVRu",
   "https://giphy.com/gifs/work-share-hard-na2v3jKhxosCI",
-  "https://www.primogif.com/p/y3sd2XAxCOSJi"
+  "https://giphygifs.s3.amazonaws.com/media/RhEvCHIeZAZ6E/giphy.gif"
 ]
 #gifs for pop
-pop_str = ["https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gifv",
+pop_str = ["https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gif",
 "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
 "https://i.imgur.com/Z56FHaK.gif",
-"https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gifv"]
+"https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif"]
 
 
 def get_quote():
