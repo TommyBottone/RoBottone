@@ -1,6 +1,7 @@
 import os
 #import time
 from discord.ext import commands
+from discord.ext import tasks
 
 from keep_alive import keep_alive
 import helper_functions
@@ -72,6 +73,12 @@ async def mine(ctx):
   #await ctx.message.channel.send(chain_value)
   return
 
+@tasks.loop(hours=6.0)
+async def post_info():
+  channel = client.get_channel(804355620018454589)
+  formatRetVal = helper_functions.format_crypto(None)
+  await channel.send(formatRetVal)
+
 @client.event
 async def on_message(message):
   if message.author.bot == True:
@@ -99,7 +106,7 @@ async def on_message(message):
   if msg.find("pussy") != -1:
     gifStr= helper_functions.get_image_from_pussy()
   #Check for awesome
-  elif msg.find("awesome") != -1:
+  elif msg.find("awesome") != -1 or msg.find("cool") != -1:
     gifStr = helper_functions.get_image_from_awesome()
   #Check for hap
   elif msg.find("ham") != -1:
@@ -134,6 +141,7 @@ async def on_message(message):
 async def on_ready():
 
   print('We have logged in as {0.user}'.format(client))
+  post_info.start()
 
 
 #Keeps the server alive on the server

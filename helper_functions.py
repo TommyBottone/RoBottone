@@ -53,7 +53,13 @@ omg_str = ["https://tenor.com/view/jonah-hill-yay-greek-aldos-gif-7212866",
 #gifs for ham
 ham_str = ["https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"]
 #gifs for awesome
-awesome_str = ["https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327", "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242"]
+awesome_str = [
+  "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327", 
+  "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242",
+  "https://gfycat.com/academicunconsciousibadanmalimbe",
+  "https://64.media.tumblr.com/tumblr_m8kmmsrUCA1r49x5ro1_400.gifv",
+  "https://tenor.com/view/cool-peralta-gif-11062927"
+  ]
 #gifs for pussy
 pussy_str = ["https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525", "https://i.makeagif.com/media/12-07-2017/gdW2fv.gif", "https://tenor.com/view/cat-kitty-kitten-money-slap-gif-4987644", "https://tenor.com/view/cute-kitty-best-kitty-alex-cute-pp-kitty-omg-yay-cute-kitty-munchkin-kitten-gif-15917800", "https://tenor.com/view/good-morning-funny-animals-insomnia-cat-tired-crazy-cute-gif-11458685", 
 "https://tenor.com/view/cat-sneaking-mountain-gif-5074481", "https://tenor.com/view/keyboard-cat-gif-3955335","https://tenor.com/view/cute-cat-kitten-kitty-pussy-cat-gif-17582631",
@@ -158,9 +164,18 @@ def get_image_from_pussy():
   img = pussy_str[val]
   return img
 
+
+awesome_str_count_array = []
 def get_image_from_awesome():
   val = random.randint(0,len(awesome_str)-1)
-  img = awesome_str[val]
+  if val in awesome_str_count_array:
+    img = get_image_from_awesome()
+  else:
+    img = awesome_str[val]
+    awesome_str_count_array.append(val)
+
+  if len(awesome_str_count_array) >= len(awesome_str)-1:
+    awesome_str_count_array.clear()
   return img
 
 def get_image_from_ham():
@@ -233,7 +248,7 @@ def get_twitter(msg):
             i+=1
   else:
     if any(word.lower() in msg for word in blocked_twitter):
-      retVal.append("Sorry not going to look that up")
+      retVal.append("Sorry, not going to look that up")
     else:
       for i, status in enumerate(tweepy.Cursor(api.search, q=query).items(3)):
         retVal.append("@"+status.author.name + ": \n\t" + status.text)
@@ -242,12 +257,16 @@ def get_twitter(msg):
 
 
 def get_twitter_user(msg):
-  user = msg.split("@")[1]
   retVal = []
-  retVal.append(user + ": \n\t")
-  tweets = api.user_timeline(screen_name = user, count = 3)
-  for tweet in tweets:
-    retVal.append(tweet._json["text"] + "\n\t")
+  if any(word.lower() in msg for word in blocked_twitter):
+    retVal.append("Sorry, not going to look that up")
+  else:
+    user = msg.split("@")[1]
+
+    retVal.append(user + ": \n\t")
+    tweets = api.user_timeline(screen_name = user, count = 3)
+    for tweet in tweets:
+      retVal.append(tweet._json["text"] + "\n\t")
 
   return retVal
 
