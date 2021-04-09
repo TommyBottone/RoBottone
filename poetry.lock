@@ -99,29 +99,18 @@ requests = "*"
 
 [[package]]
 category = "main"
-description = "A mirror package for discord.py. Please install that instead."
-name = "discord"
-optional = false
-python-versions = "*"
-version = "1.0.1"
-
-[package.dependencies]
-"discord.py" = ">=1.0.1"
-
-[[package]]
-category = "main"
 description = "A Python wrapper for the Discord API"
 name = "discord.py"
 optional = false
 python-versions = ">=3.5.3"
-version = "1.5.1"
+version = "1.7.1"
 
 [package.dependencies]
-aiohttp = ">=3.6.0,<3.7.0"
+aiohttp = ">=3.6.0,<3.8.0"
 
 [package.extras]
-docs = ["sphinx (1.8.5)", "sphinxcontrib-trio (1.1.1)", "sphinxcontrib-websupport"]
-voice = ["PyNaCl (1.3.0)"]
+docs = ["sphinx (3.0.3)", "sphinxcontrib-trio (1.1.2)", "sphinxcontrib-websupport"]
+voice = ["PyNaCl (>=1.3.0,<1.5)"]
 
 [[package]]
 category = "main"
@@ -405,7 +394,7 @@ python-versions = "*"
 version = "2020.12.14"
 
 [metadata]
-content-hash = "fa1dbf9d59d21961dc4f4b24cbd1b316ffecb9b9c7663f997772e98b9e68fb97"
+content-hash = "3677424db2c7226972078cc60a6bd6dbaf7d7db72b7f29d78c0cc2f4fcf95984"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -490,13 +479,9 @@ click = [
 cryptocompare = [
     {file = "cryptocompare-0.7.5.tar.gz", hash = "sha256:7583d5519dc74cbd9e4c704e1530c5e8446f4500d4dda481357616e3439410da"},
 ]
-discord = [
-    {file = "discord-1.0.1-py3-none-any.whl", hash = "sha256:9d4debb4a37845543bd4b92cb195bc53a302797333e768e70344222857ff1559"},
-    {file = "discord-1.0.1.tar.gz", hash = "sha256:ff6653655e342e7721dfb3f10421345fd852c2a33f2cca912b1c39b3778a9429"},
-]
 "discord.py" = [
-    {file = "discord.py-1.5.1-py3-none-any.whl", hash = "sha256:2367359e31f6527f8a936751fc20b09d7495dd6a76b28c8fb13d4ca6c55b7563"},
-    {file = "discord.py-1.5.1.tar.gz", hash = "sha256:def00dc50cf36d21346d71bc89f0cad8f18f9a3522978dc18c7796287d47de8b"},
+    {file = "discord.py-1.7.1-py3-none-any.whl", hash = "sha256:399b80d576a63fa901300e80080568e1d9cd9c21260ca622fd7145c0009278fa"},
+    {file = "discord.py-1.7.1.tar.gz", hash = "sha256:82bc5e6325ab7557db9c466f638c98e18be03c330f56ad9bf4c18bdcf19faf55"},
 ]
 ffmpeg = [
     {file = "ffmpeg-1.4.tar.gz", hash = "sha256:6931692c890ff21d39938433c2189747815dca0c60ddc7f9bb97f199dba0b5b9"},

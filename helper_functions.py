@@ -18,9 +18,10 @@ tits_str = [
   "https://imgur.com/OXrt9ZG",
   "https://i.gifer.com/47hx.gif",
   "https://i.redd.it/ut1co24vhoo61.gif",
-  "https://tenor.com/view/neekolul-gif-18144977",
+  "https://tenor.com/view/neekolul-gif-18144977",  
   "https://tenor.com/view/sexy-sex-ahaha-gif-18162626",
   "https://tenor.com/view/alexis-ren-hot-gif-18055637",   
+  "https://c.tenor.com/MSlUt3ndmp4AAAAM/boobs-tits.gif",
   "https://tenor.com/view/bounce-wink-boobs-gif-14988779",
   "https://tenor.com/view/busty-bounce-braless-gif-18275184",
   "https://tenor.com/view/red-head-sabrina-lynn-gif-18884669", 
@@ -31,6 +32,7 @@ tits_str = [
   "https://tenor.com/view/fembots-tits-sparks-fire-gif-16745917",
   "https://tenor.com/view/boobs-bra-bounce-nice-hot-gif-15574009", 
   "https://tenor.com/view/vickyli-asian-sexy-hot-glasses-gif-8841599",
+  "https://c.tenor.com/IGUw-tPeHEYAAAAM/happy-dance-walking-away.gif",
   "https://tenor.com/view/sexy-boobs-tits-hot-girl-dance-gif-15335472",
   "https://tenor.com/view/bikini-japanese-girl-beach-sexy-gif-18235976",
   "https://tenor.com/view/bounce-bouncing-bouncy-wiggle-jiggle-gif-17035985",
@@ -44,30 +46,30 @@ tits_str = [
   "https://townsquare.media/site/390/files/2016/07/Zoe-Saldana-black-bra-and-panties.gif?w=600&h=338&q=75",
   "https://s3-us-west-2.amazonaws.com/hispotion-prod/wp-content/uploads/2012/05/Kate-Upton-Cat-Daddy-GIF_6.gif",
   "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif",
-  "https://thechive.com/wp-content/uploads/2018/12/hooters-and-howitzers-are-the-perfect-holiday-gif-24.gif?attachment_cache_bust=2698007&w=307"  
+  "https://thechive.com/wp-content/uploads/2018/12/hooters-and-howitzers-are-the-perfect-holiday-gif-24.gif?attachment_cache_bust=2698007&w=307" 
 ]
-#gifs for omg
-omg_str = ["https://tenor.com/view/jonah-hill-yay-greek-aldos-gif-7212866",
-"https://tenor.com/view/daddys-home2-daddys-home2gifs-will-ferrell-dear-god-oh-lord-gif-9694391",
-"https://tenor.com/view/omg-holy-crap-mother-of-gif-5431633"]
-#gifs for ham
-ham_str = ["https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"]
-#gifs for awesome
-awesome_str = [
+#gifs for nice awesome pop omg cool
+nice_str = [
+  "https://tenor.com/view/jonah-hill-yay-greek-aldos-gif-7212866",
+  "https://tenor.com/view/daddys-home2-daddys-home2gifs-will-ferrell-dear-god-oh-lord-gif-9694391",
+  "https://tenor.com/view/omg-holy-crap-mother-of-gif-5431633",
+  "https://c.tenor.com/O73IijKloyUAAAAM/nice-south.gif", 
+  "https://tenor.com/view/nice-very-nice-gif-4295060", 
+  "https://tenor.com/view/nice-nooice-bling-key-and-peele-gif-4294979", 
+  "https://tenor.com/view/sam-neill-double-glasses-take-off-shades-off-jurassic-park-gif-16455021", 
+  "https://tenor.com/view/taking-glasses-off-gif-9227031",  
   "https://tenor.com/view/workaholics-tight-butthole-hole-butt-gif-8279327", 
   "https://tenor.com/view/tight-cool-tightbutthole-butthole-workaholics-gif-5956242",
   "https://gfycat.com/academicunconsciousibadanmalimbe",
   "https://64.media.tumblr.com/tumblr_m8kmmsrUCA1r49x5ro1_400.gifv",
-  "https://tenor.com/view/cool-peralta-gif-11062927"
-  ]
-#gifs for pussy
-pussy_str = ["https://tenor.com/view/alison-brie-alice-sophia-eve-pussy-pretty-beautiful-girl-gif-16850525", "https://i.makeagif.com/media/12-07-2017/gdW2fv.gif", "https://tenor.com/view/cat-kitty-kitten-money-slap-gif-4987644", "https://tenor.com/view/cute-kitty-best-kitty-alex-cute-pp-kitty-omg-yay-cute-kitty-munchkin-kitten-gif-15917800", "https://tenor.com/view/good-morning-funny-animals-insomnia-cat-tired-crazy-cute-gif-11458685", 
-"https://tenor.com/view/cat-sneaking-mountain-gif-5074481", "https://tenor.com/view/keyboard-cat-gif-3955335","https://tenor.com/view/cute-cat-kitten-kitty-pussy-cat-gif-17582631",
-"https://i.pinimg.com/originals/5d/50/96/5d50964c25f8ce13e5531c60892c03dd.gif"]
-#gifs for nice
-nice_str = ["https://c.tenor.com/O73IijKloyUAAAAM/nice-south.gif", 
-"https://tenor.com/view/nice-very-nice-gif-4295060", "https://tenor.com/view/nice-nooice-bling-key-and-peele-gif-4294979", "https://tenor.com/view/sam-neill-double-glasses-take-off-shades-off-jurassic-park-gif-16455021", 
-"https://tenor.com/view/taking-glasses-off-gif-9227031"] 
+  "https://tenor.com/view/cool-peralta-gif-11062927",
+  "https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gif",
+  "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
+  "https://i.imgur.com/Z56FHaK.gif",
+  "https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif"]
+
+#gifs for ham
+ham_str = ["https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"]
 #gifs for Thankyou
 ty_str = ["https://tenor.com/view/leonardo-dicaprio-thank-you-cheers-smile-gif-17045602", "https://tenor.com/view/thanks-thank-you-dwight-gif-3898407", "https://tenor.com/view/the-office-bow-michael-scott-steve-carell-office-gif-12985913", "https://tenor.com/view/thanks-south-park-drive-gif-6088544" ]
 #gifs for crash
@@ -82,11 +84,6 @@ work_str = [
   "https://giphy.com/gifs/work-share-hard-na2v3jKhxosCI",
   "https://giphygifs.s3.amazonaws.com/media/RhEvCHIeZAZ6E/giphy.gif"
 ]
-#gifs for pop
-pop_str = ["https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gif",
-"https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
-"https://i.imgur.com/Z56FHaK.gif",
-"https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif"]
 
 
 def get_quote():
@@ -171,38 +168,22 @@ def get_image_from_tits():
     tits_str_count_array.clear()
   return img
 
-def get_image_from_pussy():
-  val = random.randint(0,len(pussy_str)-1)
-  img = pussy_str[val]
-  return img
-
-
-awesome_str_count_array = []
-def get_image_from_awesome():
-  val = random.randint(0,len(awesome_str)-1)
-  if val in awesome_str_count_array:
-    img = get_image_from_awesome()
-  else:
-    img = awesome_str[val]
-    awesome_str_count_array.append(val)
-
-  if len(awesome_str_count_array) >= len(awesome_str)-1:
-    awesome_str_count_array.clear()
-  return img
-
 def get_image_from_ham():
   val = random.randint(0,len(ham_str)-1)
   img = ham_str[val]
   return img
 
+nice_str_count_array = []
 def get_image_from_nice():
-  val = random.randint(0, len(nice_str)-1)
-  img = nice_str[val]
-  return img
+  val = random.randint(0,len(nice_str)-1)
+  if val in nice_str_count_array:
+    img = get_image_from_nice()
+  else:
+    img = nice_str[val]
+    nice_str_count_array.append(val)
 
-def get_image_from_omg():
-  val = random.randint(0, len(omg_str)-1)
-  img = omg_str[val]
+  if len(nice_str_count_array) >= len(nice_str)-1:
+    nice_str_count_array.clear()
   return img
 
 def get_image_from_thanks():
@@ -226,19 +207,6 @@ def get_image_from_work():
 
   if len(work_str_count_array) >= len(work_str)-1:
     work_str_count_array.clear()
-  return img
-
-pop_str_count_array = []
-def get_image_from_pop():
-  val = random.randint(0,len(pop_str)-1)
-  if val in pop_str_count_array:
-    img = get_image_from_pop()
-  else:
-    img = pop_str[val]
-    pop_str_count_array.append(val)
-
-  if len(pop_str_count_array) >= len(pop_str)-1:
-    pop_str_count_array.clear()
   return img
 
 def get_twitter(msg):
@@ -282,7 +250,6 @@ def get_twitter_user(msg):
 
   return retVal
 
-
 def send_tweet(msg):
   api.update_status(msg)
   return
@@ -290,3 +257,26 @@ def send_tweet(msg):
 def send_tweet_fancy_d(msg):
   api_twitter_fancy_d.update_status(msg)
   return
+
+#get twitter message
+def get_twitter_message(msg):
+  ret_val = ""
+    #Check twitter for @
+  if msg.startswith("@"):
+    tweet_list = get_twitter_user(msg)
+    if tweet_list != None:
+      for tweet in tweet_list:
+        ret_val += tweet + "\n"
+  elif msg.startswith("#"):
+    tweet_list = get_twitter(msg)
+    if tweet_list != None:
+      for tweet in tweet_list:
+        ret_val += tweet + "\n"
+  else:
+    msg = "#" + msg
+    tweet_list = get_twitter(msg)
+    if tweet_list != None:
+      for tweet in tweet_list:
+        ret_val += tweet + "\n"
+  
+  return ret_val
