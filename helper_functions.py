@@ -146,6 +146,18 @@ def format_crypto(message):
       formatRetVal = "Could not find " + coin_type
   return formatRetVal
 
+
+def bot_crypto():
+  formatRetVal = ""
+
+  for c in crypto_list:
+    coin_type = c
+    currency_type = "USD"
+    retVal = compare_crypto(c, "USD")
+    formatRetVal = formatRetVal + coin_type + " to " + currency_type + ": " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["PRICE"]) + "\n"
+    
+  return formatRetVal
+
 tits_str_count_array = []
 def get_image_from_tits():
   val = random.randint(0,len(tits_str)-1)

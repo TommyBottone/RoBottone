@@ -76,7 +76,7 @@ async def mine(ctx):
 @tasks.loop(hours=6.0)
 async def post_info():
   channel = client.get_channel(804355620018454589)
-  formatRetVal = helper_functions.format_crypto(None)
+  formatRetVal = helper_functions.bot_crypto()
   await channel.send(formatRetVal)
 
 @client.event
@@ -139,7 +139,6 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-
   print('We have logged in as {0.user}'.format(client))
   post_info.start()
 
