@@ -57,9 +57,9 @@ async def crypto(ctx, *, message=None):
 #send tweet
 @client.command() 
 async def tweet(ctx, *, message=None):
-  if ctx.message.author.name == "Gene_Paremesan":
+  if ctx.message.author.name == "Gene_Paremesan" and ctx.message.author.discriminator == "9758":
     helper_functions.send_tweet(message)
-  elif ctx.message.author.name == "FancyDynamics":
+  elif ctx.message.author.name == "FancyDynamics" and ctx.message.author.discriminator == "1201":
     helper_functions.send_tweet_fancy_d(message)
   else:
     await ctx.message.channel.send("You dont get to tweet: @" + ctx.message.author.name)
