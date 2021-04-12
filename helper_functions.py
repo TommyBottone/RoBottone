@@ -8,7 +8,7 @@ import twitter
 #blocked twitter words
 blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
-crypto_list = ["BTC", "ETH", "ADA", "XRP", "LTC", "DOGE", "MANA", "ATOM", "SUSHI", "ADA", "BAT"]
+crypto_list = ["BTC", "ETH", "XRP", "LTC", "DOGE", "MANA", "ATOM", "SUSHI", "ADA", "BAT"]
 
 api = twitter.authenticate_twitter()
 api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
@@ -84,7 +84,12 @@ work_str = [
   "https://giphy.com/gifs/work-share-hard-na2v3jKhxosCI",
   "https://giphygifs.s3.amazonaws.com/media/RhEvCHIeZAZ6E/giphy.gif"
 ]
-
+#gifs for mistake
+mistake_str = [
+  "https://tenor.com/view/error-the-simpsons-not-found-robot-gif-5012717",
+  "https://tenor.com/view/arrested-development-season1-comedy-gob-ive-made-ahuge-mistake-gif-3450456",
+  "https://c.tenor.com/vzrYP4mKYA4AAAAM/i-have-made-huge-mistake.gif"
+]
 
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -140,7 +145,7 @@ def format_crypto(message):
       formatRetVal = formatRetVal + "\tDay High: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["HIGHDAY"]) + "\n"
       formatRetVal = formatRetVal + "\tDay Low: " + json.dumps(retVal["DISPLAY"][coin_type][currency_type]["LOWDAY"]) + "\n"
     except:
-      formatRetVal = "Could not find " + coin_type
+      formatRetVal = get_image_from_mistake()
   return formatRetVal
 
 
@@ -209,6 +214,19 @@ def get_image_from_work():
     work_str_count_array.clear()
   return img
 
+mistake_str_count_array = []
+def get_image_from_mistake():
+  val = random.randint(0,len(mistake_str)-1)
+  if val in mistake_str_count_array:
+    img = get_image_from_mistake()
+  else:
+    img = mistake_str[val]
+    mistake_str_count_array.append(val)
+
+  if len(mistake_str_count_array) >= len(mistake_str)-1:
+    mistake_str_count_array.clear()
+  return img
+
 def get_twitter(msg):
   retVal = []
   tag = msg.split(" ")    
@@ -234,7 +252,6 @@ def get_twitter(msg):
         retVal.append("@"+status.author.name + ": \n\t" + status.text)
 
   return retVal
-
 
 def get_twitter_user(msg):
   retVal = []

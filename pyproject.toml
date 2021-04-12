@@ -16,6 +16,7 @@ tweepy = "^3.10.0"
 cryptocompare = "^0.7.5"
 flask = "^1.1.2"
 "discord.py" = "^1.7.1"
+python-weather = "^0.2.3"
 
 [tool.poetry.dev-dependencies]
 
