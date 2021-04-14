@@ -142,10 +142,9 @@ class RoBottone:
       output = forecast.sky_text + "\t" + "Low: " + str(forecast.low) + "F\t" + "High: " + str(forecast.high) + "F"
       await ctx.message.channel.send(output)
     except:
-      mistake = helper_functions.get_image_from_mistake()
-      await ctx.message.channel.send(mistake)
+      return
 
-  @tasks.loop(hours=12.0)
+  @tasks.loop(hours=6.0)
   async def post_info(self):
     if self.first_time == True:
       self.first_time = False;
