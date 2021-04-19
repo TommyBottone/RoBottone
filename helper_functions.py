@@ -45,8 +45,7 @@ tits_str = [
   "https://78.media.tumblr.com/e119d840f7361f53926373f187ad5d64/tumblr_pf17ouj29E1u2ragso4_1280.gif",
   "https://townsquare.media/site/390/files/2016/07/Zoe-Saldana-black-bra-and-panties.gif?w=600&h=338&q=75",
   "https://s3-us-west-2.amazonaws.com/hispotion-prod/wp-content/uploads/2012/05/Kate-Upton-Cat-Daddy-GIF_6.gif",
-  "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif",
-  "https://thechive.com/wp-content/uploads/2018/12/hooters-and-howitzers-are-the-perfect-holiday-gif-24.gif?attachment_cache_bust=2698007&w=307" 
+  "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif" 
 ]
 #gifs for nice awesome pop omg cool
 nice_str = [
@@ -63,10 +62,14 @@ nice_str = [
   "https://gfycat.com/academicunconsciousibadanmalimbe",
   "https://64.media.tumblr.com/tumblr_m8kmmsrUCA1r49x5ro1_400.gifv",
   "https://tenor.com/view/cool-peralta-gif-11062927",
-  "https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gif",
-  "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
+  "https://64.media.tumblr.com/be4422803559ee9ce667f2621c6160d7/tumblr_mrwlfgF2Kx1r67id1o5_250.gif"]
+#gifs for pop
+pop_str = [
   "https://i.imgur.com/Z56FHaK.gif",
-  "https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif"]
+  "https://thumbs.gfycat.com/DefenselessSoulfulJellyfish-small.gif",
+  "https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif",
+  "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif"
+]
 
 #gifs for ham
 ham_str = ["https://tenor.com/view/30rock-sherri-shepherd-ham-gif-5281096"]
@@ -178,6 +181,11 @@ def get_image_from_ham():
   img = ham_str[val]
   return img
 
+def get_image_from_pop():
+  val = random.randint(0,len(pop_str)-1)
+  img = pop_str[val]
+  return img
+
 nice_str_count_array = []
 def get_image_from_nice():
   val = random.randint(0,len(nice_str)-1)
@@ -236,7 +244,7 @@ def get_twitter(msg):
     woeid = 23424977 #US
     trends = api.trends_place(woeid)
     i = 0
-    return_list = ""
+    return_list = None
     for value in trends: 
         for trend in value['trends']: 
             if i == 10:
@@ -289,11 +297,16 @@ def get_twitter_message(msg):
     if tweet_list != None:
       for tweet in tweet_list:
         ret_val += tweet + "\n"
+    else:
+      ret_val = get_image_from_mistake()
   else:
     msg = "#" + msg
     tweet_list = get_twitter(msg)
     if tweet_list != None:
       for tweet in tweet_list:
         ret_val += tweet + "\n"
-  
+        
+  if ret_val == "" or ret_val == None:
+    ret_val = get_image_from_mistake()
+
   return ret_val

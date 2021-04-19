@@ -18,6 +18,9 @@ flask = "^1.1.2"
 "discord.py" = "^1.7.1"
 python-weather = "^0.2.3"
 coinbase = "^2.1.0"
+td-ameritrade-api = "^1.0.4"
+td = "^0.4"
+td-ameritrade-python-api = "^0.3.5"
 
 [tool.poetry.dev-dependencies]
 

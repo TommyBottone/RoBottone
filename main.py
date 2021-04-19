@@ -2,6 +2,7 @@ import os
 
 from discord.ext import commands
 from discord.ext import tasks
+
 import python_weather 
 
 from keep_alive import keep_alive
@@ -49,6 +50,11 @@ class RoBottone:
   @client.command()
   async def ham(ctx):
     url = helper_functions.get_image_from_ham()
+    await ctx.message.channel.send(url)
+
+  @client.command()
+  async def pop(ctx):
+    url = helper_functions.get_image_from_pop()
     await ctx.message.channel.send(url)
 
   #get crypto price
@@ -148,19 +154,22 @@ class RoBottone:
   async def post_info(self):
     if self.first_time == True:
       self.first_time = False;
+      print("first time, skipping")
       return
     channel = client.get_channel(804355620018454589)
     formatRetVal = helper_functions.bot_crypto()
     await channel.send(formatRetVal)
 
-  def __init__(self):
-    keep_alive()   
-    client.run(os.getenv('TOKEN'))
+  @client.event
+  async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
+    await robot.post_info()
 
+  def __init__(self):
+    return
 
 robot =  RoBottone()
+keep_alive()   
+client.run(os.getenv('TOKEN'))
 
-@client.event
-async def on_ready():
-  print('We have logged in as {0.user}'.format(client))
-  robot.post_info()
+  

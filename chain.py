@@ -9,6 +9,7 @@ secret = os.getenv('CB-ACCESS-SIGN')
 
 client = Client(key,secret)
 
+
 #Class to access coinbase and other crypto API
 class CoinbaseWallet:
 
@@ -115,3 +116,8 @@ class CoinbaseWallet:
     if duration.toUpper() == "HOUR":
       return json.dumps(price["RAW"][crypto][currency]["VOLUMEHOUR"])
     return 0
+
+
+#TODO: add learning algorithm
+def learning_algorithm():
+  return True
