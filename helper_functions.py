@@ -8,7 +8,7 @@ import twitter
 #blocked twitter words
 blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
-crypto_list = ["BTC", "ETH", "XRP", "LTC", "DOGE", "MANA", "ATOM", "SUSHI", "ADA", "BAT"]
+crypto_list = ["BTC", "ETH", "XRP", "LTC", "XLM" "MANA", "ATOM", "SHIB", "ADA", "BAT", "SUSHI", "HBAR"]
 
 api = twitter.authenticate_twitter()
 api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
@@ -39,13 +39,19 @@ tits_str = [
   "https://i.pinimg.com/originals/1a/34/ae/1a34ae4726f2c42e359a3e81dcc23fb5.gif",
   "https://tenor.com/view/neekolul-saree-pallu-navel-play-indian-girl-gif-18337461",
   "https://gfycat.com/assuredscrawnybergerpicard-sophie-mudd-celebrity-bikini-beach",
-  "https://tenor.com/view/hannahpalmer-hannahcpalmer-tiktok-sexy-sexy-girl-gif-19691102",
+  "https://i.pinimg.com/originals/18/8f/cf/188fcfea3013bea3aaa4b4a0c5530c45.gif",
   "https://tenor.com/view/abell46s-reface-abell46s-sexy-abell46s-funny-sexy-gif-20364002",
   "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236",
   "https://78.media.tumblr.com/e119d840f7361f53926373f187ad5d64/tumblr_pf17ouj29E1u2ragso4_1280.gif",
   "https://townsquare.media/site/390/files/2016/07/Zoe-Saldana-black-bra-and-panties.gif?w=600&h=338&q=75",
   "https://s3-us-west-2.amazonaws.com/hispotion-prod/wp-content/uploads/2012/05/Kate-Upton-Cat-Daddy-GIF_6.gif",
-  "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif" 
+  "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif",
+  "https://66.media.tumblr.com/f1440a583d458dea4f5057e2008d505a/tumblr_nc43s6q1qJ1s63c00o1_400.gif",
+  "https://i.gifer.com/TPX1.gif",
+  "https://c.tenor.com/i0CLkP66-c4AAAAM/guldsted.gif",
+  "https://i.pinimg.com/originals/50/29/a9/5029a98027832d3e8de89ad2d376c1bc.gif",
+  "https://i.pinimg.com/originals/ea/bc/bd/eabcbd0bb8e7a5aad7270df1ed6e5beb.gif",
+  "https://i.pinimg.com/originals/4d/57/7c/4d577c708baa20d05ae9b50b5fa6fd3f.gif"
 ]
 #gifs for nice awesome pop omg cool
 nice_str = [
@@ -68,7 +74,9 @@ pop_str = [
   "https://i.imgur.com/Z56FHaK.gif",
   "https://thumbs.gfycat.com/DefenselessSoulfulJellyfish-small.gif",
   "https://64.media.tumblr.com/963f92eab95222a64f2dcd78fed067dc/tumblr_mk3dpvfXdo1raykwto1_400.gif",
-  "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif"
+  "https://33.media.tumblr.com/527619f13e6b6fecdf7d28684188f38f/tumblr_mukltkFEPG1qmae8to2_r1_250.gif",
+  "https://tenor.com/view/arrested-development-poppop-treat-gif-22319007",
+  "https://gfycat.com/focusedshabbyandalusianhorse"
 ]
 
 #gifs for ham
@@ -244,7 +252,7 @@ def get_twitter(msg):
     woeid = 23424977 #US
     trends = api.trends_place(woeid)
     i = 0
-    return_list = None
+    return_list = ""
     for value in trends: 
         for trend in value['trends']: 
             if i == 10:
