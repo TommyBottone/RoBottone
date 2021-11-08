@@ -8,7 +8,7 @@ import twitter
 #blocked twitter words
 blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
-crypto_list = ["BTC", "ETH", "XRP", "LTC", "XLM" "MANA", "ATOM", "SHIB", "ADA", "BAT", "SUSHI", "HBAR"]
+crypto_list = ["BTC", "ETH", "XRP", "LTC", "XLM", "MANA", "ATOM", "SHIB", "ADA", "BAT", "SUSHI", "HBAR"]
 
 api = twitter.authenticate_twitter()
 api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
