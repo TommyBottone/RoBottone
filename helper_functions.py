@@ -5,54 +5,12 @@ import cryptocompare
 import tweepy
 import twitter
 
-#blocked twitter words
-blocked_twitter = ["sex", "tits", "pussy", "gay", "lesbian", "titty", "ass", "nude", "naked", "girlsgonewild", "porn", "pawg", "nsfw", "fuck", "shit", "crap", "damn", "dammit", "fucking", "shitty", "cunt", "bitch", "bastard"]
 
 crypto_list = ["BTC", "ETH", "XRP", "LTC", "XLM", "MANA", "ATOM", "SHIB", "ADA", "BAT", "SUSHI", "HBAR"]
 
 api = twitter.authenticate_twitter()
 api_twitter_fancy_d = twitter.authenticate_twitter_fancy_d()
 
-#gifs for tits
-tits_str = [
-  "https://imgur.com/OXrt9ZG",
-  "https://i.gifer.com/47hx.gif",
-  "https://i.redd.it/ut1co24vhoo61.gif",
-  "https://tenor.com/view/neekolul-gif-18144977",  
-  "https://tenor.com/view/sexy-sex-ahaha-gif-18162626",
-  "https://tenor.com/view/alexis-ren-hot-gif-18055637",   
-  "https://c.tenor.com/MSlUt3ndmp4AAAAM/boobs-tits.gif",
-  "https://tenor.com/view/bounce-wink-boobs-gif-14988779",
-  "https://tenor.com/view/busty-bounce-braless-gif-18275184",
-  "https://tenor.com/view/red-head-sabrina-lynn-gif-18884669", 
-  "https://media1.giphy.com/media/l0HlK3RyTkaJIfRJu/giphy.gif",
-  "https://giphy.com/gifs/sexy-michelle-jenneke-CyIkFYHRZYkHS",
-  "https://thumbs.gfycat.com/SardonicComplexGrunion-mobile.mp4",
-  "https://tenor.com/view/cosplay-korean-hot-asian-gif-18522415",
-  "https://tenor.com/view/fembots-tits-sparks-fire-gif-16745917",
-  "https://tenor.com/view/boobs-bra-bounce-nice-hot-gif-15574009", 
-  "https://tenor.com/view/vickyli-asian-sexy-hot-glasses-gif-8841599",
-  "https://c.tenor.com/IGUw-tPeHEYAAAAM/happy-dance-walking-away.gif",
-  "https://tenor.com/view/sexy-boobs-tits-hot-girl-dance-gif-15335472",
-  "https://tenor.com/view/bikini-japanese-girl-beach-sexy-gif-18235976",
-  "https://tenor.com/view/bounce-bouncing-bouncy-wiggle-jiggle-gif-17035985",
-  "https://i.pinimg.com/originals/1a/34/ae/1a34ae4726f2c42e359a3e81dcc23fb5.gif",
-  "https://tenor.com/view/neekolul-saree-pallu-navel-play-indian-girl-gif-18337461",
-  "https://gfycat.com/assuredscrawnybergerpicard-sophie-mudd-celebrity-bikini-beach",
-  "https://i.pinimg.com/originals/18/8f/cf/188fcfea3013bea3aaa4b4a0c5530c45.gif",
-  "https://tenor.com/view/abell46s-reface-abell46s-sexy-abell46s-funny-sexy-gif-20364002",
-  "https://media1.tenor.com/images/e257c0306583a544a6f86a7904b6c37b/tenor.gif?itemid=3529236",
-  "https://78.media.tumblr.com/e119d840f7361f53926373f187ad5d64/tumblr_pf17ouj29E1u2ragso4_1280.gif",
-  "https://townsquare.media/site/390/files/2016/07/Zoe-Saldana-black-bra-and-panties.gif?w=600&h=338&q=75",
-  "https://s3-us-west-2.amazonaws.com/hispotion-prod/wp-content/uploads/2012/05/Kate-Upton-Cat-Daddy-GIF_6.gif",
-  "https://lh3.googleusercontent.com/-cySiOTXr73s/YDAKin4bk3I/AAAAAAAAHZM/GTfX_9-y_lol1cPdIwINmHtMYJA9RvXXwCK8BGAsYHg/s0/2021-02-19.gif",
-  "https://66.media.tumblr.com/f1440a583d458dea4f5057e2008d505a/tumblr_nc43s6q1qJ1s63c00o1_400.gif",
-  "https://i.gifer.com/TPX1.gif",
-  "https://c.tenor.com/i0CLkP66-c4AAAAM/guldsted.gif",
-  "https://i.pinimg.com/originals/50/29/a9/5029a98027832d3e8de89ad2d376c1bc.gif",
-  "https://i.pinimg.com/originals/ea/bc/bd/eabcbd0bb8e7a5aad7270df1ed6e5beb.gif",
-  "https://i.pinimg.com/originals/4d/57/7c/4d577c708baa20d05ae9b50b5fa6fd3f.gif"
-]
 #gifs for nice awesome pop omg cool
 nice_str = [
   "https://tenor.com/view/jonah-hill-yay-greek-aldos-gif-7212866",
@@ -171,19 +129,6 @@ def bot_crypto():
     
   return formatRetVal
 
-tits_str_count_array = []
-def get_image_from_tits():
-  val = random.randint(0,len(tits_str)-1)
-  if val in tits_str_count_array:
-    img = get_image_from_tits()
-  else:
-    img = tits_str[val]
-    tits_str_count_array.append(val)
-
-  if len(tits_str_count_array) >= len(tits_str)-1:
-    tits_str_count_array.clear()
-  return img
-
 def get_image_from_ham():
   val = random.randint(0,len(ham_str)-1)
   img = ham_str[val]
@@ -261,9 +206,6 @@ def get_twitter(msg):
             return_list = return_list + str(i+1) + ": " + trend['name'] + "\n"
             i+=1
   else:
-    if any(word.lower() in msg for word in blocked_twitter):
-      retVal.append("Sorry, not going to look that up")
-    else:
       for i, status in enumerate(tweepy.Cursor(api.search, q=query).items(3)):
         retVal.append("@"+status.author.name + ": \n\t" + status.text)
 
@@ -271,15 +213,12 @@ def get_twitter(msg):
 
 def get_twitter_user(msg):
   retVal = []
-  if any(word.lower() in msg for word in blocked_twitter):
-    retVal.append("Sorry, not going to look that up")
-  else:
-    user = msg.split("@")[1]
+  user = msg.split("@")[1]
 
-    retVal.append(user + ": \n\t")
-    tweets = api.user_timeline(screen_name = user, count = 3)
-    for tweet in tweets:
-      retVal.append(tweet._json["text"] + "\n\t")
+  retVal.append(user + ": \n\t")
+  tweets = api.user_timeline(screen_name = user, count = 3)
+  for tweet in tweets:
+    retVal.append(tweet._json["text"] + "\n\t")
 
   return retVal
 

@@ -2,9 +2,6 @@ import os
 
 from discord.ext import commands
 from discord.ext import tasks
-from discord import File
-
-import meow_meow_beans
 
 import python_weather
 
@@ -15,9 +12,6 @@ prefix = "$"
 client = commands.Bot(prefix, case_insensitive=True)
 wclient = python_weather.Client(format=python_weather.IMPERIAL)
 
-mmb = meow_meow_beans.Meow_Meow_Beans()
-
-
 class RoBottone:
 
 	first_time = True
@@ -26,17 +20,6 @@ class RoBottone:
 	async def hello(ctx):
 		await ctx.message.channel.send('Hello {0}!'.format(
 		    ctx.message.author.name))
-		return
-
-	@client.command()
-	async def join(ctx):
-		channel = ctx.author.voice.channel
-		await channel.connect()
-		return
-
-	@client.command()
-	async def leave(ctx):
-		await ctx.voice_client.disconnect()
 		return
 
 	@client.command()
@@ -123,18 +106,6 @@ class RoBottone:
 		return
 
 	@client.command()
-	async def tits(ctx):
-		url = helper_functions.get_image_from_tits()
-		await ctx.message.channel.send(url)
-		return
-
-	@client.command()
-	async def ass(ctx):
-		url = "https://gfycat.com/impassionedvelvetygoldfinch"
-		await ctx.message.channel.send(url)
-		return
-
-	@client.command()
 	async def thanks(ctx):
 		url = helper_functions.get_image_from_thanks()
 		await ctx.message.channel.send(url)
@@ -164,53 +135,6 @@ class RoBottone:
 			await ctx.message.channel.send(output)
 		except:
 			return
-
-	@client.command()
-	async def meowmeowbeenz(ctx):
-		user = ctx.author.name
-		if mmb.user_exists(user) == True:
-			mmb.score_user("Robottone", user, 1)
-			await ctx.message.channel.send(
-			    user + " already exists! 1 meow meow bean!")
-			return
-		else:
-			mmb.add_user(user)
-			return
-
-	@client.command()
-	async def givebeenz(ctx, *, message=None):
-		user_from = ctx.author.name
-		user_to = ""
-		score = 1
-		if message != None:
-
-			split_message = message.split(" ")
-			if len(split_message) == 2:
-				user_to = split_message[0]
-				score = int(split_message[1])
-			else:
-				await ctx.message.channel.send("Bad format! 1 meow meow bean!")
-				return
-			retVal = mmb.score_user(user_from, user_to, score)
-			if retVal == "self":
-				mmb.score_user("Robottone", user_to, 1)
-				await ctx.message.channel.send(
-				    "Can't give beans to yourself! 1 meow meow bean!")
-			elif retVal == "dne":
-				mmb.score_user("Robottone", user_to, 1)
-				await ctx.message.channel.send(
-				    "User doesnt exist! 1 meow meow bean!")
-		return
-
-	@client.command()
-	async def score(ctx, *, message=None):
-		user = ctx.author.name
-		if message != None:
-			if mmb.user_exists(message):
-				user = message
-
-		score = mmb.get_score(user)
-		await ctx.message.channel.send(file=File(score))
 
 	@tasks.loop(hours=6.0)
 	async def post_info(self):
