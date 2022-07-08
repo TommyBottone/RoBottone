@@ -59,6 +59,15 @@ mistake_str = [
   "https://tenor.com/view/arrested-development-season1-comedy-gob-ive-made-ahuge-mistake-gif-3450456",
   "https://c.tenor.com/vzrYP4mKYA4AAAAM/i-have-made-huge-mistake.gif"
 ]
+#gifs for happybirthday
+happy_birthday = [
+  "https://i.imgur.com/EWlUSZ9.gif",
+  "https://kindyou.com/wp-content/uploads/2018/01/Happy-Birthday-Gif-with-a-Sexy-Girl-4.gif",
+  "https://kindyou.com/wp-content/uploads/2018/01/Birthday-Gif-with-a-Hilarious-Dance1.gif",
+  "https://bestanimations.com/media/hot-birthday-gifts/1890499373daily-news-hot-birthday-gif.gif",
+  "https://bestanimations.com/media/hot-birthday-gifts/1348878474hot-funny-girl-happy-birthday-wishes-for-guy-card-gif.gif",
+  "https://c.tenor.com/KnWD3xyzkV4AAAAS/happy-birthday-gifts.gif"
+]
 
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -160,6 +169,11 @@ def get_image_from_thanks():
 def get_image_from_crash():
   val = random.randint(0, len(crash_str)-1)
   img = crash_str[val]
+  return img
+
+def get_happy_birthday():
+  val = random.randint(0, len(happy_birthday)-1)
+  img = happy_birthday[val]
   return img
 
 work_str_count_array = []

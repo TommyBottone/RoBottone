@@ -12,6 +12,7 @@ prefix = "$"
 client = commands.Bot(prefix, case_insensitive=True)
 wclient = python_weather.Client(format=python_weather.IMPERIAL)
 
+
 class RoBottone:
 
 	first_time = True
@@ -136,6 +137,13 @@ class RoBottone:
 		except:
 			return
 
+	@client.command()
+	async def happybirthday(ctx):
+		url = helper_functions.get_happy_birthday()
+		await ctx.message.channel.send(url)
+		return
+
+  
 	@tasks.loop(hours=6.0)
 	async def post_info(self):
 		if self.first_time == True:
