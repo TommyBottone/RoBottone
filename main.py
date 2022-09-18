@@ -75,6 +75,13 @@ class RoBottone:
 		str = helper_functions.get_twitter_message(message.lower())
 		await ctx.message.channel.send(str)
 		return
+    
+	@client.command()
+	async def likeall(ctx, *, message=None):
+		if message == None:
+			return
+		helper_functions.like_it_all(message.lower())
+		return
 
 	@client.command()
 	async def trending(ctx):

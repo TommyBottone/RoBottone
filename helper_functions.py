@@ -239,6 +239,18 @@ def get_twitter_user(msg):
 def send_tweet(msg):
   api.update_status(msg)
   return
+
+def like_it_all(msg):
+  user = msg
+  if user.startswith("@"):
+    user = msg.split("@")[1]
+  tweets = api.user_timeline(screen_name = user, count = 50)
+  for tweet in tweets:
+    try:
+      api.create_favorite(tweet.id)
+    except:
+      continue
+  return
   
 def send_tweet_fancy_d(msg):
   api_twitter_fancy_d.update_status(msg)
